@@ -1,0 +1,26 @@
+<odoo>
+    <record id="template_delivery_whatsapp" model="mail.template">
+        <field name="name">WhatsApp: Delivery Notification</field>
+        <field name="model_id" ref="model_delivery"/>
+        <field name="auto_delete" eval="False"/>
+        <field name="subject">Your Order Confirmation: ${object.name}</field>
+        <field name="body_html"><![CDATA[
+Hello <t t-esc="object.customer_id.name or 'Customer'"/>,
+
+Your water jug order is confirmed! ✅
+
+📅 *Order Date:* <t t-esc="object.date"/>
+🔢 *Pieces:* <t t-esc="object.pieces"/>
+💰 *Price per Piece:* ₹<t t-esc="object.price"/>
+💵 *Total Amount:* ₹<t t-esc="object.total_amount"/>
+
+🏠 *Delivery Address:*
+<t t-esc="object.customer_address"/>
+
+Thank you for your business!
+
+Best regards,
+<t t-esc="object.create_uid.company_id.name or 'Our Team'"/>
+]]></field>
+    </record>
+</odoo>
